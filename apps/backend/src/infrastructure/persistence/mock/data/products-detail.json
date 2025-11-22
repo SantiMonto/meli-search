@@ -1,0 +1,190 @@
+{
+  "MLA123456789": {
+    "id": "MLA123456789",
+    "title": "Apple iPhone 13 (128 GB) - Medianoche",
+    "price": 1367999,
+    "original_price": 1523244.99,
+    "currency_id": "ARS",
+    "available_quantity": 15,
+    "sold_quantity": 342,
+    "condition": "new",
+    "permalink": "https://www.mercadolibre.com.ar/p/MLA123456789",
+    "pictures": [
+      {
+        "id": "1",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_2X_123456-MLA123456789-012023-F.webp"
+      },
+      {
+        "id": "2",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_2X_123457-MLA123456789-012023-F.webp"
+      },
+      {
+        "id": "3",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_2X_123458-MLA123456789-012023-F.webp"
+      }
+    ],
+    "installments": {
+      "quantity": 12,
+      "amount": 113999.92,
+      "rate": 0,
+      "currency_id": "ARS"
+    },
+    "shipping": {
+      "free_shipping": true,
+      "mode": "me2",
+      "logistic_type": "fulfillment",
+      "store_pick_up": false
+    },
+    "seller_address": {
+      "city": {
+        "name": "CABA"
+      },
+      "state": {
+        "name": "Buenos Aires"
+      }
+    },
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_name": "Apple"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_name": "iPhone 13"
+      },
+      {
+        "id": "STORAGE_CAPACITY",
+        "name": "Capacidad de almacenamiento",
+        "value_name": "128 GB"
+      },
+      {
+        "id": "COLOR",
+        "name": "Color",
+        "value_name": "Medianoche"
+      }
+    ],
+    "warranty": "Garantía del vendedor: 12 meses",
+    "description": "El iPhone 13 viene con el sistema de dos cámaras más impresionante en un iPhone, para que tomes fotos espectaculares con mucha o poca luz.",
+    "reviews": {
+      "rating_average": 4.9,
+      "total": 35
+    }
+  },
+  "MLA987654321": {
+    "id": "MLA987654321",
+    "title": "Apple iPhone 16 Pro Max 256gb - Titanio Natural",
+    "price": 2299000,
+    "original_price": 2599000,
+    "currency_id": "ARS",
+    "available_quantity": 8,
+    "sold_quantity": 89,
+    "condition": "new",
+    "permalink": "https://www.mercadolibre.com.ar/p/MLA987654321",
+    "pictures": [
+      {
+        "id": "1",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_2X_987654-MLA987654321-092024-F.webp"
+      },
+      {
+        "id": "2",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_2X_987655-MLA987654321-092024-F.webp"
+      }
+    ],
+    "installments": {
+      "quantity": 12,
+      "amount": 191583.33,
+      "rate": 0,
+      "currency_id": "ARS"
+    },
+    "shipping": {
+      "free_shipping": true,
+      "mode": "me2",
+      "logistic_type": "fulfillment",
+      "store_pick_up": false
+    },
+    "seller_address": {
+      "city": {
+        "name": "CABA"
+      },
+      "state": {
+        "name": "Buenos Aires"
+      }
+    },
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_name": "Apple"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_name": "iPhone 16 Pro Max"
+      },
+      {
+        "id": "STORAGE_CAPACITY",
+        "name": "Capacidad de almacenamiento",
+        "value_name": "256 GB"
+      }
+    ],
+    "warranty": "Garantía del vendedor: 12 meses",
+    "description": "El iPhone 16 Pro Max es el más avanzado de la línea. Con chip A18 Pro y sistema de cámaras profesional.",
+    "reviews": {
+      "rating_average": 5.0,
+      "total": 12
+    }
+  },
+  "MLA555555555": {
+    "id": "MLA555555555",
+    "title": "iPhone 8 64 GB Plata - Reacondicionado Certificado",
+    "price": 412500,
+    "currency_id": "ARS",
+    "available_quantity": 3,
+    "sold_quantity": 45,
+    "condition": "used",
+    "permalink": "https://www.mercadolibre.com.ar/p/MLA555555555",
+    "pictures": [
+      {
+        "id": "1",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_2X_555555-MLA555555555-052023-F.webp"
+      }
+    ],
+    "installments": {
+      "quantity": 6,
+      "amount": 68750,
+      "rate": 0,
+      "currency_id": "ARS"
+    },
+    "shipping": {
+      "free_shipping": false
+    },
+    "seller_address": {
+      "city": {
+        "name": "Rosario"
+      },
+      "state": {
+        "name": "Santa Fe"
+      }
+    },
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_name": "Apple"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_name": "iPhone 8"
+      }
+    ],
+    "warranty": "Garantía del vendedor: 6 meses",
+    "description": "iPhone 8 reacondicionado certificado. Batería nueva, pantalla original.",
+    "reviews": {
+      "rating_average": 5.0,
+      "total": 2
+    }
+  }
+}
