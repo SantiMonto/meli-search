@@ -1,9 +1,19 @@
 /**
- * Shared Types Package
- *
- * This package contains TypeScript types, interfaces, and utilities
- * shared between frontend and backend applications.
+ * @meli/shared-types
+ * Shared TypeScript types, interfaces, and utilities for the Mercado Libre monorepo
  */
 
-// Placeholder - will be populated in PRP-003
-export {};
+// Enums
+export * from './enums';
+
+// Domain Types
+export * from './domain';
+
+// API Contracts
+export * from './api';
+
+// Constants
+export * from './constants';
+
+// Utilities
+export * from './utils';
