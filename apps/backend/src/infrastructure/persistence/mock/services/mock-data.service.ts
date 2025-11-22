@@ -1,6 +1,50 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { searchIphoneData, productsDetailData } from '../data';
 
+interface ProductListItem {
+  id: string;
+  title: string;
+  price: number;
+  currency_id: string;
+  condition: string;
+  thumbnail?: string;
+  installments?: {
+    quantity: number;
+    amount: number;
+    rate?: number;
+    currency_id?: string;
+  };
+  shipping?: {
+    free_shipping: boolean;
+    mode?: string;
+    logistic_type?: string;
+    store_pick_up?: boolean;
+  };
+  reviews?: {
+    rating_average: number;
+    total: number;
+  };
+}
+
+interface ProductDetail extends ProductListItem {
+  original_price?: number;
+  available_quantity?: number;
+  sold_quantity?: number;
+  permalink?: string;
+  pictures?: Array<{ id: string; url: string }>;
+  seller_address?: {
+    city?: { name: string };
+    state?: { name: string };
+  };
+  attributes?: Array<{
+    id: string;
+    name: string;
+    value_name: string;
+  }>;
+  warranty?: string;
+  description?: string;
+}
+
 interface SearchResultData {
   query: string;
   paging: {
@@ -8,7 +52,7 @@ interface SearchResultData {
     offset: number;
     limit: number;
   };
-  results: any[];
+  results: ProductListItem[];
 }
 
 /**
@@ -21,7 +65,7 @@ export class MockDataService {
 
   // In-memory data store
   private searchData: Map<string, SearchResultData> = new Map();
-  private detailData: Map<string, any> = new Map();
+  private detailData: Map<string, ProductDetail> = new Map();
 
   constructor() {
     this.loadMockData();
@@ -37,7 +81,7 @@ export class MockDataService {
     this.searchData.set('iphone', searchIphoneData as SearchResultData);
 
     // Load detail data
-    const details = productsDetailData as Record<string, any>;
+    const details = productsDetailData as Record<string, ProductDetail>;
     Object.entries(details).forEach(([id, detail]) => {
       this.detailData.set(id, detail);
     });
@@ -108,7 +152,7 @@ export class MockDataService {
       }
 
       // Check if any product title matches
-      const hasMatch = data.results.some((product: any) =>
+      const hasMatch = data.results.some((product) =>
         product.title.toLowerCase().includes(query),
       );
 
@@ -116,7 +160,7 @@ export class MockDataService {
         // Filter results to only matching products
         return {
           ...data,
-          results: data.results.filter((product: any) =>
+          results: data.results.filter((product) =>
             product.title.toLowerCase().includes(query),
           ),
         };
@@ -134,10 +178,10 @@ export class MockDataService {
    * @returns Paginated results
    */
   private paginateResults(
-    results: any[],
+    results: ProductListItem[],
     limit: number,
     offset: number,
-  ): any[] {
+  ): ProductListItem[] {
     return results.slice(offset, offset + limit);
   }
 
@@ -146,7 +190,7 @@ export class MockDataService {
    * @param id - Product ID
    * @returns Product detail or null
    */
-  findById(id: string): any | null {
+  findById(id: string): ProductDetail | null {
     return this.detailData.get(id) || null;
   }
 }

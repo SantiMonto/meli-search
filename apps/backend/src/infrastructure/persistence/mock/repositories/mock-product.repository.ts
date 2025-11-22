@@ -6,6 +6,50 @@ import { MockDataService } from '../services';
 import { MOCK_CONFIG } from '../../../config';
 import { Currency, ProductCondition } from '@meli/shared-types';
 
+interface ProductListItemData {
+  id: string;
+  title: string;
+  price: number;
+  currency_id: string;
+  condition: string;
+  thumbnail?: string;
+  installments?: {
+    quantity: number;
+    amount: number;
+    rate?: number;
+    currency_id?: string;
+  };
+  shipping?: {
+    free_shipping: boolean;
+    mode?: string;
+    logistic_type?: string;
+    store_pick_up?: boolean;
+  };
+  reviews?: {
+    rating_average: number;
+    total: number;
+  };
+}
+
+interface ProductDetailData extends ProductListItemData {
+  original_price?: number;
+  available_quantity?: number;
+  sold_quantity?: number;
+  permalink?: string;
+  pictures?: Array<{ id: string; url: string }>;
+  seller_address?: {
+    city?: { name: string };
+    state?: { name: string };
+  };
+  attributes?: Array<{
+    id: string;
+    name: string;
+    value_name: string;
+  }>;
+  warranty?: string;
+  description?: string;
+}
+
 /**
  * Mock Product Repository
  * Implements IProductRepository using mock data
@@ -29,7 +73,7 @@ export class MockProductRepository implements IProductRepository {
     const data = this.mockDataService.search(query, limit, offset);
 
     // Convert to domain entities
-    const products = data.results.map((item: any) => this.mapToProduct(item));
+    const products = data.results.map((item) => this.mapToProduct(item));
     const paging = new Paging(
       data.paging.total,
       data.paging.offset,
@@ -70,7 +114,7 @@ export class MockProductRepository implements IProductRepository {
   /**
    * Map API data to Product entity (list item)
    */
-  private mapToProduct(data: any): Product {
+  private mapToProduct(data: ProductListItemData): Product {
     return new Product(
       data.id,
       data.title,
@@ -115,7 +159,7 @@ export class MockProductRepository implements IProductRepository {
   /**
    * Map API data to Product entity (detail)
    */
-  private mapToProductDetail(data: any): Product {
+  private mapToProductDetail(data: ProductDetailData): Product {
     return new Product(
       data.id,
       data.title,
@@ -127,7 +171,7 @@ export class MockProductRepository implements IProductRepository {
       data.available_quantity,
       data.sold_quantity,
       data.permalink,
-      data.pictures?.map((p: any) => ({ id: p.id, url: p.url })),
+      data.pictures?.map((p) => ({ id: p.id, url: p.url })),
       data.installments
         ? {
             quantity: data.installments.quantity,
@@ -145,7 +189,7 @@ export class MockProductRepository implements IProductRepository {
           }
         : undefined,
       data.seller_address,
-      data.attributes?.map((a: any) => ({
+      data.attributes?.map((a) => ({
         id: a.id,
         name: a.name,
         valueName: a.value_name,
