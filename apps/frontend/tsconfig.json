@@ -6,6 +6,7 @@
     "jsx": "preserve",
     "module": "esnext",
     "moduleResolution": "bundler",
+    "baseUrl": ".",
     "allowJs": true,
     "noEmit": true,
     "isolatedModules": true,
