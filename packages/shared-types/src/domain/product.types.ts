@@ -36,4 +36,9 @@ export interface Product {
   description?: string;
   warranty?: string;
   attributes?: ProductAttribute[];
+  permalink?: string;
+  sellerAddress?: {
+    city: { name: string };
+    state: { name: string };
+  };
 }

@@ -15,6 +15,7 @@ export interface Paging {
  * Search results with pagination
  */
 export interface SearchResultResponse {
+  query: string;
   results: ProductResponse[];
   paging: Paging;
 }
