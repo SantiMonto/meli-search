@@ -44,16 +44,16 @@ export class Price {
    * Get discount amount
    */
   getDiscountAmount(): number {
-    if (!this.hasDiscount()) return 0;
-    return this.originalAmount! - this.amount;
+    if (!this.hasDiscount() || !this.originalAmount) return 0;
+    return this.originalAmount - this.amount;
   }
 
   /**
    * Get discount percentage
    */
   getDiscountPercentage(): number {
-    if (!this.hasDiscount()) return 0;
-    return Math.round((this.getDiscountAmount() / this.originalAmount!) * 100);
+    if (!this.hasDiscount() || !this.originalAmount) return 0;
+    return Math.round((this.getDiscountAmount() / this.originalAmount) * 100);
   }
 
   /**

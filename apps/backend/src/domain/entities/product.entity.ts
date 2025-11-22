@@ -57,9 +57,9 @@ export class Product {
    * Calculate discount percentage
    */
   getDiscountPercentage(): number {
-    if (!this.hasDiscount()) return 0;
+    if (!this.hasDiscount() || !this.originalPrice) return 0;
     return Math.round(
-      ((this.originalPrice! - this.price) / this.originalPrice!) * 100,
+      ((this.originalPrice - this.price) / this.originalPrice) * 100,
     );
   }
 

@@ -1,3 +1,4 @@
+import { ProductCondition } from '@meli/shared-types';
 import { Product } from './product.entity';
 import { Paging } from './paging.entity';
 
@@ -47,7 +48,7 @@ export class SearchResult {
   /**
    * Filter products by condition
    */
-  filterByCondition(condition: string): Product[] {
+  filterByCondition(condition: ProductCondition): Product[] {
     return this.products.filter((p) => p.condition === condition);
   }
 
