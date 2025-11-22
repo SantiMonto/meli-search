@@ -2,17 +2,39 @@ import { HTMLAttributes, forwardRef } from 'react';
 import { cn } from '@/lib/utils';
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
-  hover?: boolean;
+  hoverable?: boolean;
+  padding?: 'none' | 'sm' | 'md' | 'lg';
 }
 
-const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ className, hover = false, children, ...props }, ref) => {
+/**
+ * Card Component
+ * Container with Mercado Libre shadow styles
+ */
+export const Card = forwardRef<HTMLDivElement, CardProps>(
+  (
+    { className, hoverable = false, padding = 'md', children, ...props },
+    ref,
+  ) => {
+    const baseStyles = 'bg-white rounded-ml shadow-ml-card';
+
+    const hoverStyles = hoverable
+      ? 'transition-shadow hover:shadow-ml-card-hover cursor-pointer'
+      : '';
+
+    const paddingStyles = {
+      none: '',
+      sm: 'p-3',
+      md: 'p-4',
+      lg: 'p-6',
+    };
+
     return (
       <div
         ref={ref}
         className={cn(
-          'rounded-ml bg-white p-4 shadow-ml-card',
-          hover && 'transition-shadow hover:shadow-ml-card-hover',
+          baseStyles,
+          hoverStyles,
+          paddingStyles[padding],
           className,
         )}
         {...props}
@@ -25,4 +47,49 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
 
 Card.displayName = 'Card';
 
-export { Card };
+/**
+ * Card Header
+ */
+export const CardHeader = forwardRef<
+  HTMLDivElement,
+  HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn('flex flex-col space-y-1.5', className)}
+    {...props}
+  />
+));
+
+CardHeader.displayName = 'CardHeader';
+
+/**
+ * Card Title
+ */
+export const CardTitle = forwardRef<
+  HTMLHeadingElement,
+  HTMLAttributes<HTMLHeadingElement>
+>(({ className, ...props }, ref) => (
+  <h3
+    ref={ref}
+    className={cn(
+      'text-lg font-semibold leading-none tracking-tight',
+      className,
+    )}
+    {...props}
+  />
+));
+
+CardTitle.displayName = 'CardTitle';
+
+/**
+ * Card Content
+ */
+export const CardContent = forwardRef<
+  HTMLDivElement,
+  HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div ref={ref} className={cn('pt-0', className)} {...props} />
+));
+
+CardContent.displayName = 'CardContent';
