@@ -22,6 +22,6 @@
       "@meli/shared-types": ["../../packages/shared-types/src"]
     }
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "test"]
+  "include": ["src/**/*", "test/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
