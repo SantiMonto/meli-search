@@ -67,6 +67,7 @@ npm install
 ## 🏃 Ejecución
 
 ### Desarrollo (con hot-reload)
+
 ```bash
 npm run dev --workspace=apps/frontend
 ```
@@ -74,6 +75,7 @@ npm run dev --workspace=apps/frontend
 Visita: http://localhost:3000
 
 ### Producción
+
 ```bash
 npm run build --workspace=apps/frontend
 npm run start --workspace=apps/frontend
@@ -119,6 +121,7 @@ npm run format --workspace=apps/frontend
 ## 📝 Utilidades
 
 ### `cn()` - Merge Tailwind classes
+
 ```typescript
 import { cn } from '@/lib/utils';
 
@@ -126,6 +129,7 @@ import { cn } from '@/lib/utils';
 ```
 
 ### `formatCurrency()` - Format ARS currency
+
 ```typescript
 import { formatCurrency } from '@/lib/utils';
 
@@ -133,6 +137,7 @@ formatCurrency(1234567); // "$1.234.567"
 ```
 
 ### `debounce()` - Debounce function
+
 ```typescript
 import { debounce } from '@/lib/utils';
 
