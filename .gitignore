@@ -60,7 +60,7 @@ build/
 dist/
 out/
 
-# Package manager
-package-lock.json
+# Package manager (keep package-lock.json for reproducible builds)
+# package-lock.json should be committed
 yarn.lock
 pnpm-lock.yaml
