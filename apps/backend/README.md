@@ -67,7 +67,22 @@ npm install
 ### Desarrollo (con hot-reload)
 
 ```bash
+# Usa ts-node para ejecución directa de TypeScript
 npm run start:dev --workspace=apps/backend
+```
+
+> **Nota:** El backend corre en el puerto 3000 por defecto.
+
+### Troubleshooting
+
+Si el puerto 3000 está ocupado:
+
+```bash
+# Buscar proceso en puerto 3000
+lsof -i :3000
+
+# Matar proceso (reemplazar PID)
+kill -9 <PID>
 ```
 
 ### Producción
