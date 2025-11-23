@@ -27,7 +27,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     ref,
   ) => {
     const baseStyles =
-      'h-10 rounded-ml border bg-white px-3 py-2 text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-500 disabled:cursor-not-allowed disabled:opacity-50';
+      'h-10 border bg-white px-3 py-2 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-500 disabled:cursor-not-allowed disabled:opacity-50';
 
     const errorStyles = error
       ? 'border-error-500 focus-visible:ring-error-500'
@@ -55,7 +55,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         />
 
         {rightIcon && (
-          <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
+          <div className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
             {rightIcon}
           </div>
         )}

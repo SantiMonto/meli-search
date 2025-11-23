@@ -18,5 +18,8 @@
     "**/package-lock.json": true,
     "**/.next": true,
     "**/dist": true
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   }
 }

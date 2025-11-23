@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import Link from 'next/link';
 import { Container } from '../container/container';
 import { SearchBox } from '@/components/features/search';
+import Image from 'next/image';
 
 /**
  * Header Component
@@ -11,15 +12,17 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-primary-500 shadow-sm">
       <Container>
-        <div className="flex h-16 items-center justify-between gap-4">
-          {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <div className="text-2xl font-bold text-gray-900">
-              Mercado Libre
-            </div>
+        <div className="flex h-16 items-center justify-center gap-16">
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={100}
+              height={100}
+              className="h-8 w-auto"
+            />
           </Link>
 
-          {/* Search bar placeholder - will be replaced with actual SearchBox */}
           <div className="flex flex-1 max-w-2xl items-center gap-2">
             <div className="relative w-full">
               <Suspense
