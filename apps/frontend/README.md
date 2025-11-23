@@ -89,6 +89,13 @@ Crea un archivo `.env.local` basado en `.env.local.example`:
 NEXT_PUBLIC_API_URL=http://localhost:3000
 ```
 
+> **Nota:** El frontend corre en el puerto 3001 por defecto para evitar conflictos con el backend (3000).
+
+### Componentes Clave
+
+- **SearchBox**: Implementa `Suspense` para manejo seguro de `useSearchParams`.
+- **ProductDetail**: Usa `ProductDetailContainer` para lógica de cliente.
+
 ## 🧪 Testing
 
 ```bash

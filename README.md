@@ -54,8 +54,8 @@ npm install --legacy-peer-deps
 npm run dev
 
 # O iniciar individualmente:
-npm run dev:frontend  # Frontend en http://localhost:3000
-npm run dev:backend   # Backend en http://localhost:3001
+npm run dev:frontend  # Frontend en http://localhost:3001
+npm run dev:backend   # Backend en http://localhost:3000
 ```
 
 ### Build
