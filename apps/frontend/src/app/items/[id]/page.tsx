@@ -1,22 +1,20 @@
 import { Metadata } from 'next';
+import { ProductDetailContainer } from '@/components/features/product/product-detail/product-detail-container';
 
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+
   return {
-    title: `Producto ${params.id} - Mercado Libre`,
-    description: 'Detalle del producto',
+    title: `Producto - Mercado Libre`,
+    description: `Comprá el producto con ID ${id} en Mercado Libre. Envíos a todo el país.`,
   };
 }
 
-export default function ProductDetailPage({ params }: Props) {
-  return (
-    <main className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-900">Detalle del Producto</h1>
-      <p className="mt-2 text-gray-600">ID: {params.id}</p>
-      {/* Product detail component will go here in next PRP */}
-    </main>
-  );
+export default async function ProductDetailPage({ params }: Props) {
+  const { id } = await params;
+  return <ProductDetailContainer id={id} />;
 }
