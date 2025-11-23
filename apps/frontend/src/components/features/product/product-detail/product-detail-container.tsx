@@ -5,8 +5,38 @@ import { useProductDetail } from '@/hooks/use-product-detail';
 import { ProductDetail } from './product-detail';
 import { Spinner } from '@/components/ui/spinner/spinner';
 
+import Script from 'next/script';
+
+import { Product } from '@/core/entities/product.entity';
+
 interface ProductDetailContainerProps {
   id: string;
+}
+
+function generateStructuredData(product: Product) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.title,
+    image: product.getMainImageUrl(),
+    description: product.description || product.title,
+    sku: product.id,
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: product.currencyId,
+      price: product.price,
+      availability: product.isAvailable()
+        ? 'https://schema.org/InStock'
+        : 'https://schema.org/OutOfStock',
+      seller: {
+        '@type': 'Organization',
+        name: 'Mercado Libre',
+      },
+    },
+    condition: product.isNew()
+      ? 'https://schema.org/NewCondition'
+      : 'https://schema.org/UsedCondition',
+  };
 }
 
 export function ProductDetailContainer({ id }: ProductDetailContainerProps) {
@@ -35,6 +65,16 @@ export function ProductDetailContainer({ id }: ProductDetailContainerProps) {
   // TODO: Fetch categories properly or pass them if available
   // For now we can pass an empty array or mock categories
   const categories = ['Electrónica', 'Audio', 'Auriculares'];
+  const structuredData = generateStructuredData(product);
 
-  return <ProductDetail product={product} categories={categories} />;
+  return (
+    <>
+      <Script
+        id="product-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <ProductDetail product={product} categories={categories} />
+    </>
+  );
 }

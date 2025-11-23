@@ -100,7 +100,23 @@ npm run test:watch --workspace=apps/frontend
 
 # Test coverage
 npm run test:coverage --workspace=apps/frontend
+
+# E2E tests (Playwright)
+npm run test:e2e --workspace=apps/frontend
+
+# E2E tests UI mode
+npm run test:e2e:ui --workspace=apps/frontend
+
+# Bundle analysis
+npm run analyze --workspace=apps/frontend
 ```
+
+## 🚀 Deploy
+
+El proyecto está configurado para deploy automático en Vercel mediante GitHub Actions.
+
+1. Push a `main` dispara el deploy a producción.
+2. Push a `develop` o PRs disparan CI (lint, test, build).
 
 ## 🔍 Linting y Type-checking
 
