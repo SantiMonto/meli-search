@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import Link from 'next/link';
 import { Container } from '../container/container';
 import { SearchBox } from '@/components/features/search';
@@ -21,7 +22,13 @@ export function Header() {
           {/* Search bar placeholder - will be replaced with actual SearchBox */}
           <div className="flex flex-1 max-w-2xl items-center gap-2">
             <div className="relative w-full">
-              <SearchBox />
+              <Suspense
+                fallback={
+                  <div className="h-10 w-full rounded-md bg-white/20" />
+                }
+              >
+                <SearchBox />
+              </Suspense>
             </div>
           </div>
         </div>
