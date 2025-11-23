@@ -19,7 +19,7 @@ const nextConfig: NextConfig = {
   },
   env: {
     NEXT_PUBLIC_API_URL:
-      process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001',
+      process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000',
   },
   experimental: {
     optimizePackageImports: ['@meli/shared-types', 'lucide-react'],

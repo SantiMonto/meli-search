@@ -13,9 +13,9 @@ export const getApiBaseUrl = (): string => {
     // Fallback for development if env var is missing, but warn
     if (process.env.NODE_ENV === 'development') {
       console.warn(
-        'NEXT_PUBLIC_API_URL is not defined, using default http://localhost:3001',
+        'NEXT_PUBLIC_API_URL is not defined, using default http://localhost:3000',
       );
-      return 'http://localhost:3001';
+      return 'http://localhost:3000';
     }
     throw new Error('NEXT_PUBLIC_API_URL environment variable is not defined');
   }

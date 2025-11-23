@@ -3,7 +3,6 @@
 import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Container } from '@/components/layout/container/container';
-import { SearchBox } from '@/components/features/search/search-box';
 import { ProductList } from '@/components/features/search/product-list';
 import { useSearch } from '@/hooks/use-search';
 import { PAGINATION } from '@meli/shared-types';
@@ -28,11 +27,6 @@ function SearchPageContent() {
   return (
     <Container className="py-8">
       <div className="space-y-8">
-        {/* Search Box */}
-        <div className="mx-auto max-w-2xl">
-          <SearchBox />
-        </div>
-
         {/* Results */}
         {query ? (
           <div>
