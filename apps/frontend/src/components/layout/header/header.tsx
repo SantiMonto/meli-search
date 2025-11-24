@@ -15,7 +15,7 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-primary-500 shadow-sm">
       <Container>
         {/* Desktop Grid Layout */}
-        <div className="hidden xl:grid xl:grid-cols-[auto_1fr_auto] xl:gap-4">
+        <div className="hidden xl:grid xl:grid-cols-[auto_1fr_auto]">
           {/* Row 1: Logo, Search, Promo */}
           <Link href="/" className="flex items-center gap-2 h-16">
             <Image
@@ -39,7 +39,7 @@ export function Header() {
             </div>
           </div>
 
-          <div className="flex items-center justify-end h-16">
+          <div className="flex items-center justify-end">
             <PromoBanner />
           </div>
 

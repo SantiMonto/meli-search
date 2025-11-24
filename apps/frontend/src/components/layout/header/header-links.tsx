@@ -21,21 +21,24 @@ export function HeaderLinks() {
 
         {/* Column 2: Main links (aligned with search bar) */}
         <div className="flex items-center justify-center">
-          <div className="w-full max-w-2xl pl-6">
-            <section className="flex items-center gap-2">
+          <div className="w-full max-w-2xl pl-8">
+            <section className="flex items-center gap-4">
               <div className="flex items-center gap-1">
                 <Link href="/categories">Categorías</Link>
                 <ChevronDown className="h-3 w-3" />
               </div>
               <Link href="/offers">Ofertas</Link>
               <Link href="/coupons">Cupones</Link>
+              <Link href="/supermarket">Supermercado</Link>
+              <Link href="/fashion">Moda</Link>
               <Link href="/sell">Vender</Link>
+              <Link href="/help">Ayuda/PQR</Link>
             </section>
           </div>
         </div>
 
         {/* Column 3: Account links (aligned with promo banner) */}
-        <section className="flex items-center justify-end gap-2">
+        <section className="flex items-center justify-end gap-3">
           <Link href="/register">Crea tu cuenta</Link>
           <Link href="/login">Ingresa</Link>
           <Link href="/orders">Mis compras</Link>
