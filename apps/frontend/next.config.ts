@@ -9,11 +9,23 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   transpilePackages: ['@meli/shared-types'],
   images: {
-    domains: [
-      'http2.mlstatic.com',
-      'http1.mlstatic.com',
-      'mla-s1-p.mlstatic.com',
-      'mla-s2-p.mlstatic.com',
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'http2.mlstatic.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'http1.mlstatic.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'mla-s1-p.mlstatic.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'mla-s2-p.mlstatic.com',
+      },
     ],
     formats: ['image/avif', 'image/webp'],
   },
