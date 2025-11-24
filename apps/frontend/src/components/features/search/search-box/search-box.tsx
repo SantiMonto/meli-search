@@ -53,7 +53,7 @@ export function SearchBox() {
           </div>
         }
         fullWidth
-        className="border-none shadow-sm"
+        className="border-none shadow-sm truncate"
       />
     </form>
   );
