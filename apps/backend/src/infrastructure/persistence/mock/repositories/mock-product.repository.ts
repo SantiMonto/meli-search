@@ -48,6 +48,7 @@ interface ProductDetailData extends ProductListItemData {
   }>;
   warranty?: string;
   description?: string;
+  category_path?: string[];
 }
 
 /**

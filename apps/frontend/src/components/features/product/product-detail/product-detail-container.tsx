@@ -62,9 +62,6 @@ export function ProductDetailContainer({ id }: ProductDetailContainerProps) {
     );
   }
 
-  // TODO: Fetch categories properly or pass them if available
-  // For now we can pass an empty array or mock categories
-  const categories = ['Electrónica', 'Audio', 'Auriculares'];
   const structuredData = generateStructuredData(product);
 
   return (
@@ -74,7 +71,7 @@ export function ProductDetailContainer({ id }: ProductDetailContainerProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <ProductDetail product={product} categories={categories} />
+      <ProductDetail product={product} />
     </>
   );
 }

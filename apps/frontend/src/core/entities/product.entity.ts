@@ -197,17 +197,17 @@ export class Product {
       data.currencyId,
       data.condition,
       data.thumbnail,
-      undefined,
-      undefined,
-      undefined,
+      undefined, // originalPrice
+      undefined, // availableQuantity
+      undefined, // soldQuantity
       data.permalink,
-      data.pictures,
+      undefined, // pictures
       data.installments,
       data.shipping,
-      undefined,
-      undefined,
-      undefined,
-      undefined,
+      undefined, // sellerAddress
+      undefined, // attributes
+      undefined, // warranty
+      undefined, // description
       data.reviews,
     );
   }

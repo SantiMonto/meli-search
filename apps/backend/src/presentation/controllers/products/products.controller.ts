@@ -22,6 +22,7 @@ import { SuggestionsQueryDto } from './dto/suggestions-query.dto';
 import { ProductIdParamDto } from './dto/product-id-param.dto';
 import { SearchResultResponseDto } from '../../dto/responses/search-result.response.dto';
 import { ProductListItemResponseDto } from '../../dto/responses/product-list-item.response.dto';
+import { ProductDetailResponseDto } from '../../dto/responses/product-detail.response.dto';
 import { ErrorResponseDto } from '../../dto/responses/error.response.dto';
 
 /**
@@ -184,7 +185,7 @@ export class ProductsController {
   @ApiResponse({
     status: HttpStatus.OK,
     description: 'Product detail',
-    type: ProductListItemResponseDto,
+    type: ProductDetailResponseDto,
   })
   @ApiResponse({
     status: HttpStatus.NOT_FOUND,
@@ -198,7 +199,7 @@ export class ProductsController {
   })
   async getDetail(
     @Param() params: ProductIdParamDto,
-  ): Promise<ProductListItemResponseDto> {
+  ): Promise<ProductDetailResponseDto> {
     this.logger.log(`Getting product detail for ID: ${params.id}`);
 
     const product = await this.getProductDetailUseCase.execute({
@@ -206,7 +207,7 @@ export class ProductsController {
     });
 
     // Map domain entity to response DTO
-    const response: ProductListItemResponseDto = {
+    const response: ProductDetailResponseDto = {
       id: product.id,
       title: product.title,
       price: product.price,
@@ -216,6 +217,15 @@ export class ProductsController {
       shipping: product.shipping,
       installments: product.installments,
       reviews: product.reviews,
+      originalPrice: product.originalPrice,
+      availableQuantity: product.availableQuantity,
+      soldQuantity: product.soldQuantity,
+      permalink: product.permalink,
+      pictures: product.pictures,
+      sellerAddress: product.sellerAddress,
+      attributes: product.attributes,
+      warranty: product.warranty,
+      description: product.description,
     };
 
     return response;

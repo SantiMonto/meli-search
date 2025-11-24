@@ -26,7 +26,7 @@ export function SearchSuggestions({
 
   const handleSuggestionClick = (productId: string) => {
     onSelect();
-    router.push(`/items/${productId}`);
+    router.push(`/items/${productId}?q=${encodeURIComponent(query)}`);
   };
 
   // Don't show if no query or loading without suggestions
