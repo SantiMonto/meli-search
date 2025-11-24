@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/layout';
@@ -10,12 +10,16 @@ const inter = Inter({
   display: 'swap',
 });
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#FFE600',
+};
+
 export const metadata: Metadata = {
   title: 'Mercado Libre - Busca productos',
   description: 'Encuentra los mejores productos en Mercado Libre',
   keywords: ['mercado libre', 'productos', 'compras', 'ecommerce'],
-  viewport: 'width=device-width, initial-scale=1',
-  themeColor: '#FFE600',
 };
 
 export default function RootLayout({
