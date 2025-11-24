@@ -31,6 +31,7 @@ export const API_CONFIG = {
   ENDPOINTS: {
     PRODUCTS: {
       SEARCH: '/api/v1/products/search',
+      SUGGESTIONS: '/api/v1/products/suggestions',
       DETAIL: (id: string) => `/api/v1/products/${id}`,
     },
     HEALTH: '/api/v1/health',

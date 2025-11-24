@@ -50,6 +50,8 @@ export const queryKeys = {
     all: ['products'] as const,
     search: (query: string, limit: number, offset: number) =>
       [...queryKeys.products.all, 'search', { query, limit, offset }] as const,
+    suggestions: (query: string, limit: number) =>
+      [...queryKeys.products.all, 'suggestions', { query, limit }] as const,
     detail: (id: string) => [...queryKeys.products.all, 'detail', id] as const,
   },
 } as const;

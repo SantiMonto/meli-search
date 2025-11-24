@@ -45,6 +45,28 @@ export class ApiProductRepository implements IProductRepository {
   }
 
   /**
+   * Get product suggestions for autocomplete
+   * @param query - Search term
+   * @param limit - Maximum number of suggestions
+   * @returns Array of products for suggestions
+   * @throws NetworkException if request fails
+   */
+  async getSuggestions(query: string, limit: number = 6): Promise<Product[]> {
+    try {
+      const response = await this.httpClient.get<ProductResponse[]>(
+        API_CONFIG.ENDPOINTS.PRODUCTS.SUGGESTIONS,
+        { q: query, limit },
+      );
+
+      // Transform API response to domain entities
+      // Suggestions endpoint returns array directly, not wrapped in results
+      return response.map((item) => Product.fromListItem(item));
+    } catch (error) {
+      this.handleError(error);
+    }
+  }
+
+  /**
    * Get product by ID
    * @param id - Product ID
    * @returns Product entity
