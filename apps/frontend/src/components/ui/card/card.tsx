@@ -15,7 +15,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
     { className, hoverable = false, padding = 'md', children, ...props },
     ref,
   ) => {
-    const baseStyles = 'bg-white rounded-ml shadow-ml-card';
+    const baseStyles = 'bg-white border-t border-gray-200 shadow-ml-card';
 
     const hoverStyles = hoverable
       ? 'transition-shadow hover:shadow-ml-card-hover cursor-pointer'
