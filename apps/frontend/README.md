@@ -94,7 +94,8 @@ NEXT_PUBLIC_API_URL=http://localhost:3000
 ### Componentes Clave
 
 - **SearchBox**: Implementa `Suspense` para manejo seguro de `useSearchParams`.
-- **ProductDetail**: Usa `ProductDetailContainer` para lógica de cliente.
+- **ProductDetail**: Usa `ProductDetailContainer` para lógica de cliente e inyecta **JSON-LD** para SEO.
+- **ImageGallery**: Optimizado con `priority` para mejorar LCP (Largest Contentful Paint).
 
 ## 🧪 Testing
 

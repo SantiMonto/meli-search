@@ -162,6 +162,7 @@ Los datos mock se encuentran en:
 - `src/infrastructure/persistence/mock/data/products-detail.json`
 
 El repositorio mock simula delays de red (200-800ms) para una experiencia más realista.
+Los datos incluyen **imágenes reales de alta calidad** para los productos de prueba (iPhone 13, 16 Pro Max, etc.).
 
 ## 🔍 Linting y Type-checking
 

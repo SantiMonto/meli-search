@@ -50,12 +50,14 @@ npm install --legacy-peer-deps
 ### Desarrollo
 
 ```bash
-# Iniciar frontend y backend simultáneamente
-npm run dev
+# Iniciar servicios (en terminales separadas):
 
-# O iniciar individualmente:
-npm run dev:frontend  # Frontend en http://localhost:3001
-npm run dev:backend   # Backend en http://localhost:3000
+# Terminal 1 - Backend
+npm run dev:backend   # http://localhost:3000
+
+# Terminal 2 - Frontend
+npm run dev:frontend  # http://localhost:3001
+
 ```
 
 ### Build
