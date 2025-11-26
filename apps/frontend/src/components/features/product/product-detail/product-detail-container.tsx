@@ -8,6 +8,9 @@ import { Spinner } from '@/components/ui/spinner/spinner';
 import Script from 'next/script';
 
 import { Product } from '@/core/entities/product.entity';
+import { Button } from '@/components/ui';
+import Link from 'next/link';
+import { Info } from 'lucide-react';
 
 interface ProductDetailContainerProps {
   id: string;
@@ -56,8 +59,14 @@ export function ProductDetailContainer({ id }: ProductDetailContainerProps) {
 
   if (isError || !product) {
     return (
-      <div className="flex h-[50vh] items-center justify-center text-red-500">
-        Error al cargar el producto. Por favor intenta nuevamente.
+      <div className="flex h-[50vh] flex-col items-center justify-center gap-4">
+        <Info className="h-12 w-12 text-red-600" />
+        <p className="text-lg font-semibold text-red-500">
+          Hubo un error al cargar el producto.
+        </p>
+        <Link href="/">
+          <Button>Volver al inicio</Button>
+        </Link>
       </div>
     );
   }
