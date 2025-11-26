@@ -12,15 +12,15 @@
     "pictures": [
       {
         "id": "1",
-        "url": "https://http2.mlstatic.com/D_NQ_NP_2X_123456-MLA123456789-012023-F.webp"
+        "url": "https://http2.mlstatic.com/D_NQ_NP_2X_802970-MLU70375563273_072023-O.webp"
       },
       {
         "id": "2",
-        "url": "https://http2.mlstatic.com/D_NQ_NP_2X_123457-MLA123456789-012023-F.webp"
+        "url": "https://http2.mlstatic.com/D_NQ_NP_834290-MLA74781175605_022024-O.webp"
       },
       {
         "id": "3",
-        "url": "https://http2.mlstatic.com/D_NQ_NP_2X_123458-MLA123456789-012023-F.webp"
+        "url": "https://http2.mlstatic.com/D_NQ_NP_972201-MLA74651718156_022024-O.webp"
       }
     ],
     "installments": {
@@ -85,11 +85,11 @@
     "pictures": [
       {
         "id": "1",
-        "url": "https://http2.mlstatic.com/D_NQ_NP_2X_987654-MLA987654321-092024-F.webp"
+        "url": "https://http2.mlstatic.com/D_Q_NP_741108-MLA94691570096_102025-O.webp"
       },
       {
         "id": "2",
-        "url": "https://http2.mlstatic.com/D_NQ_NP_2X_987655-MLA987654321-092024-F.webp"
+        "url": "https://http2.mlstatic.com/D_NQ_NP_604464-MLU78894756056_092024-O.webp"
       }
     ],
     "installments": {
@@ -148,7 +148,11 @@
     "pictures": [
       {
         "id": "1",
-        "url": "https://http2.mlstatic.com/D_NQ_NP_2X_555555-MLA555555555-052023-F.webp"
+        "url": "https://http2.mlstatic.com/D_NQ_NP_629619-MCO70709862588_072023-O.webp"
+      },
+      {
+        "id": "2",
+        "url": "https://http2.mlstatic.com/D_Q_NP_702939-MLA44156710053_112020-O.webp"
       }
     ],
     "installments": {
