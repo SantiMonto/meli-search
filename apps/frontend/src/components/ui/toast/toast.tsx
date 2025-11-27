@@ -12,10 +12,7 @@ interface ToastProps {
 export const Toast = ({ message, isVisible, onClose }: ToastProps) => {
   useEffect(() => {
     if (isVisible) {
-      const timer = setTimeout(() => {
-        onClose();
-      }, 3000);
-      return () => clearTimeout(timer);
+      onClose();
     }
   }, [isVisible, onClose]);
 

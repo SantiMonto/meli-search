@@ -1,7 +1,47 @@
 import { render, screen } from '@testing-library/react';
-import { ProductInfo } from './product-info';
 import { Product } from '@/core/entities/product.entity';
 import { ProductCondition, Currency } from '@meli/shared-types';
+
+jest.mock('next/navigation', () => ({
+  useRouter: jest.fn(() => ({
+    push: jest.fn(),
+    replace: jest.fn(),
+    prefetch: jest.fn(),
+    back: jest.fn(),
+    forward: jest.fn(),
+    refresh: jest.fn(),
+  })),
+  usePathname: jest.fn(() => '/products/MLA123'),
+  useSearchParams: jest.fn(() => new URLSearchParams()),
+}));
+
+jest.mock('@/core/contexts/auth.context', () => ({
+  useAuth: jest.fn(() => ({
+    isAuthenticated: false,
+    user: null,
+    login: jest.fn(),
+    logout: jest.fn(),
+  })),
+  AuthProvider: ({ children }: { children: React.ReactNode }) => (
+    <div>{children}</div>
+  ),
+}));
+
+jest.mock('@/core/contexts/cart.context', () => ({
+  useCart: jest.fn(() => ({
+    items: [],
+    addToCart: jest.fn(),
+    removeFromCart: jest.fn(),
+    clearCart: jest.fn(),
+    totalItems: 0,
+  })),
+  CartProvider: ({ children }: { children: React.ReactNode }) => (
+    <div>{children}</div>
+  ),
+}));
+
+// Ahora SÍ importa el componente (después de los mocks)
+import { ProductInfo } from './product-info';
 
 describe('ProductInfo', () => {
   const mockProduct = new Product(
@@ -11,9 +51,9 @@ describe('ProductInfo', () => {
     Currency.ARS,
     ProductCondition.NEW,
     'http://example.com/img.jpg',
-    1200, // originalPrice
-    10, // availableQuantity
-    5, // soldQuantity
+    1200,
+    10,
+    5,
     'http://permalink',
     [],
     undefined,
