@@ -7,7 +7,7 @@ import { useAuth } from '@/core/contexts/auth.context';
 import { useCart } from '@/core/contexts/cart.context';
 import { useRouter, usePathname } from 'next/navigation';
 import { Toast } from '@/components/ui';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 interface ProductInfoProps {
   product: Product;
@@ -29,7 +29,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
     }).format(price);
   };
 
-  const addProductToCart = () => {
+  const addProductToCart = useCallback(() => {
     addToCart({
       id: product.id,
       title: product.title,
@@ -39,7 +39,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
       free_shipping: product.shipping?.freeShipping || false,
     });
     setShowToast(true);
-  };
+  }, [addToCart, product]);
 
   useEffect(() => {
     // Use window.location to bypass potential React state staleness/Strict Mode double-invocation issues
@@ -53,7 +53,19 @@ export function ProductInfo({ product }: ProductInfoProps) {
       !autoAddProcessed.current
     ) {
       autoAddProcessed.current = true;
-      addProductToCart();
+
+      // Add product to cart directly here to avoid setState in effect
+      addToCart({
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        currency_id: product.currencyId,
+        thumbnail: product.thumbnail || '',
+        free_shipping: product.shipping?.freeShipping || false,
+      });
+
+      // Defer toast to avoid synchronous setState in effect
+      setTimeout(() => setShowToast(true), 0);
 
       // Remove the param immediately from the browser URL to prevent double-execution
       params.delete('add_to_cart');
@@ -71,7 +83,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
         router.replace(newPath);
       }
     }
-  }, [isAuthenticated, pathname, router]);
+  }, [isAuthenticated, pathname, router, addToCart, product]);
 
   const handleAddToCart = () => {
     if (!isAuthenticated) {

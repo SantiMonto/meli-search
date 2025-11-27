@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 interface User {
   identifier: string;
@@ -19,20 +19,24 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
+  // Load user from localStorage after mount to avoid hydration mismatch
   useEffect(() => {
-    // Check localStorage on mount
+    if (typeof window === 'undefined') return;
+
     const storedUser = localStorage.getItem('meli_user');
     if (storedUser) {
       try {
-        setUser(JSON.parse(storedUser));
+        // Defer setState to avoid synchronous setState in effect
+        setTimeout(() => setUser(JSON.parse(storedUser)), 0);
       } catch (e) {
         console.error('Failed to parse user from local storage', e);
         localStorage.removeItem('meli_user');
       }
     }
-    setIsLoading(false);
+    // Defer setMounted to avoid synchronous setState in effect
+    setTimeout(() => setMounted(true), 0);
   }, []);
 
   const login = (data: User) => {
@@ -45,6 +49,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.removeItem('meli_user');
   };
 
+  // Don't render children until mounted to avoid hydration mismatch
+  if (!mounted) {
+    return null;
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -54,7 +63,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         logout,
       }}
     >
-      {!isLoading && children}
+      {children}
     </AuthContext.Provider>
   );
 };

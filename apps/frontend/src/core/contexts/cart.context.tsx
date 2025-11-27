@@ -20,27 +20,29 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [items, setItems] = useState<CartItem[]>([]);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  // Load from localStorage on mount
+  // Load from localStorage after mount to avoid hydration mismatch
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const storedCart = localStorage.getItem('meli_cart');
     if (storedCart) {
       try {
-        setItems(JSON.parse(storedCart));
+        // Defer setState to avoid synchronous setState in effect
+        setTimeout(() => setItems(JSON.parse(storedCart)), 0);
       } catch (e) {
         console.error('Failed to parse cart from local storage', e);
       }
     }
-    setIsLoaded(true);
+    // Defer setMounted to avoid synchronous setState in effect
+    setTimeout(() => setMounted(true), 0);
   }, []);
 
   // Save to localStorage whenever items change
   useEffect(() => {
-    if (isLoaded) {
-      localStorage.setItem('meli_cart', JSON.stringify(items));
-    }
-  }, [items, isLoaded]);
+    localStorage.setItem('meli_cart', JSON.stringify(items));
+  }, [items]);
 
   const addToCart = (product: Omit<CartItem, 'quantity'>) => {
     setItems((prevItems) => {
@@ -91,6 +93,11 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       clearCart,
     };
   }, [items]);
+
+  // Don't render children until mounted to avoid hydration mismatch
+  if (!mounted) {
+    return null;
+  }
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
