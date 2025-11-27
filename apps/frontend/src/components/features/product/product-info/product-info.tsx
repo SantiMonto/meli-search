@@ -1,18 +1,97 @@
+'use client';
+
 import { Product } from '@/core/entities/product.entity';
 import { Button } from '@/components/ui/button/button';
 import { ProductCondition } from '@meli/shared-types';
+import { useAuth } from '@/core/contexts/auth.context';
+import { useCart } from '@/core/contexts/cart.context';
+import { useRouter, usePathname } from 'next/navigation';
+import { Toast } from '@/components/ui';
+import { useState, useEffect, useRef } from 'react';
 
 interface ProductInfoProps {
   product: Product;
 }
 
 export function ProductInfo({ product }: ProductInfoProps) {
+  const { isAuthenticated } = useAuth();
+  const { addToCart } = useCart();
+  const router = useRouter();
+  const pathname = usePathname();
+  const [showToast, setShowToast] = useState(false);
+  const autoAddProcessed = useRef(false);
+
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('es-AR', {
       style: 'currency',
       currency: product.currencyId,
       maximumFractionDigits: 0,
     }).format(price);
+  };
+
+  const addProductToCart = () => {
+    addToCart({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      currency_id: product.currencyId,
+      thumbnail: product.thumbnail || '',
+      free_shipping: product.shipping?.freeShipping || false,
+    });
+    setShowToast(true);
+  };
+
+  useEffect(() => {
+    // Use window.location to bypass potential React state staleness/Strict Mode double-invocation issues
+    const params = new URLSearchParams(window.location.search);
+    const shouldAddToCart = params.get('add_to_cart') === 'true';
+    const shouldBuyNow = params.get('buy_now') === 'true';
+
+    if (
+      isAuthenticated &&
+      (shouldAddToCart || shouldBuyNow) &&
+      !autoAddProcessed.current
+    ) {
+      autoAddProcessed.current = true;
+      addProductToCart();
+
+      // Remove the param immediately from the browser URL to prevent double-execution
+      params.delete('add_to_cart');
+      params.delete('buy_now');
+      const newSearch = params.toString();
+      const newPath = newSearch ? `${pathname}?${newSearch}` : pathname;
+
+      window.history.replaceState(null, '', newPath);
+
+      // If buy_now, redirect to cart after adding
+      if (shouldBuyNow) {
+        router.push('/cart');
+      } else {
+        // Sync Next.js router
+        router.replace(newPath);
+      }
+    }
+  }, [isAuthenticated, pathname, router]);
+
+  const handleAddToCart = () => {
+    if (!isAuthenticated) {
+      const returnUrl = encodeURIComponent(`${pathname}?add_to_cart=true`);
+      router.push(`/login?returnUrl=${returnUrl}`);
+      return;
+    }
+
+    addProductToCart();
+  };
+
+  const handleBuyNow = () => {
+    if (!isAuthenticated) {
+      const returnUrl = encodeURIComponent(`${pathname}?buy_now=true`);
+      router.push(`/login?returnUrl=${returnUrl}`);
+      return;
+    }
+
+    addProductToCart();
+    router.push('/cart');
   };
 
   return (
@@ -70,10 +149,15 @@ export function ProductInfo({ product }: ProductInfoProps) {
       )}
 
       <div className="mt-8 flex flex-col gap-3">
-        <Button size="lg" fullWidth>
+        <Button size="lg" fullWidth onClick={handleBuyNow}>
           Comprar ahora
         </Button>
-        <Button variant="secondary" size="lg" fullWidth>
+        <Button
+          variant="secondary"
+          size="lg"
+          fullWidth
+          onClick={handleAddToCart}
+        >
           Agregar al carrito
         </Button>
       </div>
@@ -84,6 +168,12 @@ export function ProductInfo({ product }: ProductInfoProps) {
           {product.description || 'Sin descripción disponible.'}
         </p>
       </div>
+
+      <Toast
+        message="Producto agregado al carrito"
+        isVisible={showToast}
+        onClose={() => setShowToast(false)}
+      />
     </div>
   );
 }

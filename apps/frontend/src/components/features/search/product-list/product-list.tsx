@@ -53,12 +53,6 @@ export function ProductList({
   return (
     <div className="space-y-6">
       {/* Results summary */}
-      {paging && (
-        <div className="text-sm text-gray-600">
-          {paging.getResultsRangeText()}
-        </div>
-      )}
-
       {/* Product list */}
       <div className="space-y-4">
         {products.map((product) => (
@@ -68,6 +62,11 @@ export function ProductList({
 
       {/* Pagination */}
       {paging && <Pagination paging={paging} query={query} />}
+      {paging && (
+        <div className="text-sm text-gray-600">
+          {paging.getResultsRangeText()}
+        </div>
+      )}
     </div>
   );
 }

@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/layout';
 import { QueryProvider } from '@/infrastructure/providers/query-provider';
+import { AuthProvider } from '@/core/contexts/auth.context';
+import { CartProvider } from '@/core/contexts/cart.context';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -31,8 +33,12 @@ export default function RootLayout({
     <html lang="es" className={inter.variable}>
       <body className="min-h-screen bg-gray-100 font-sans antialiased">
         <QueryProvider>
-          <Header />
-          {children}
+          <AuthProvider>
+            <CartProvider>
+              <Header />
+              {children}
+            </CartProvider>
+          </AuthProvider>
         </QueryProvider>
       </body>
     </html>
