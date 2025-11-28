@@ -4,8 +4,8 @@ services:
     env: node
     region: oregon
     plan: free
-    buildCommand: cd ../.. && npm install --legacy-peer-deps && npm run build --workspace=apps/backend
-    startCommand: cd apps/backend && npm run start:prod
+    buildCommand: cd ../.. && npm install --legacy-peer-deps && cd apps/backend && npx @nestjs/cli build
+    startCommand: node dist/apps/backend/src/main
     envVars:
       - key: NODE_ENV
         value: production
