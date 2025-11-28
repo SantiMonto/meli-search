@@ -13,16 +13,16 @@ El backend actuará como un servicio mock que simula la API de Mercado Libre. De
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                     INFRASTRUCTURE LAYER                     │
-│  ┌────────────────┐  ┌──────────────┐  ┌─────────────────┐ │
-│  │  Controllers   │  │ Repositories │  │  External APIs  │ │
-│  │   (HTTP/REST)  │  │    (Mock)    │  │   (If needed)   │ │
-│  └────────┬───────┘  └──────┬───────┘  └────────┬────────┘ │
+│  apps/backend/src/infrastructure/                           │
+│  ├── controllers/      (HTTP/REST)                         │
+│  ├── repositories/     (Mock Implementations)              │
+│  └── config/           (Configuration)                     │
 └───────────┼──────────────────┼───────────────────┼──────────┘
             │                  │                   │
             │                  ▼                   │
 ┌───────────┼──────────────────────────────────────┼──────────┐
 │           │          APPLICATION LAYER           │          │
-│           │   ┌──────────────────────────┐      │          │
+│           │   apps/backend/src/domain/use-cases/         │
 │           └──▶│      Use Cases/Services  │◀─────┘          │
 │               │  - SearchProductsUseCase │                  │
 │               │  - GetProductDetailUseCase│                 │
@@ -32,11 +32,10 @@ El backend actuará como un servicio mock que simula la API de Mercado Libre. De
                              ▼
 ┌─────────────────────────────────────────────────────────────┐
 │                        DOMAIN LAYER                          │
-│  ┌─────────────┐  ┌──────────────────┐  ┌────────────────┐ │
-│  │  Entities   │  │ Repository Ports │  │ Domain Services│ │
-│  │  - Product  │  │  (Interfaces)    │  │   (If needed)  │ │
-│  │  - Search   │  │                  │  │                │ │
-│  └─────────────┘  └──────────────────┘  └────────────────┘ │
+│  apps/backend/src/domain/                                    │
+│  ├── entities/         (Core Models)                       │
+│  ├── repositories/     (Ports/Interfaces)                  │
+│  └── value-objects/    (Domain Values)                     │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -45,88 +44,40 @@ El backend actuará como un servicio mock que simula la API de Mercado Libre. De
 ```
 apps/backend/
 ├── src/
-│   ├── common/                          # Código compartido
-│   │   ├── decorators/
-│   │   │   └── api-response.decorator.ts
-│   │   ├── filters/
-│   │   │   ├── http-exception.filter.ts
-│   │   │   └── all-exceptions.filter.ts
-│   │   ├── interceptors/
-│   │   │   ├── logging.interceptor.ts
-│   │   │   └── transform.interceptor.ts
-│   │   ├── pipes/
-│   │   │   └── validation.pipe.ts
-│   │   └── guards/
-│   │       └── throttle.guard.ts
+│   ├── app.module.ts                    # Main Application Module
+│   ├── main.ts                          # Entry Point
 │   │
-│   ├── config/                          # Configuración
-│   │   ├── configuration.ts
-│   │   ├── validation.schema.ts
-│   │   └── swagger.config.ts
+│   ├── domain/                          # Domain Layer (Business Logic)
+│   │   ├── entities/                    # Core Entities
+│   │   │   ├── product.entity.ts
+│   │   │   └── search-result.entity.ts
+│   │   ├── repositories/                # Repository Interfaces (Ports)
+│   │   │   └── product.repository.interface.ts
+│   │   ├── use-cases/                   # Application Use Cases
+│   │   │   ├── search-products.use-case.ts
+│   │   │   └── get-product-detail.use-case.ts
+│   │   └── value-objects/               # Value Objects
+│   │       └── price.vo.ts
 │   │
-│   ├── modules/
-│   │   ├── products/                    # Módulo de Productos
-│   │   │   ├── domain/                  # Capa de Dominio
-│   │   │   │   ├── entities/
-│   │   │   │   │   ├── product.entity.ts
-│   │   │   │   │   ├── search-result.entity.ts
-│   │   │   │   │   ├── shipping.entity.ts
-│   │   │   │   │   ├── installment.entity.ts
-│   │   │   │   │   └── review.entity.ts
-│   │   │   │   ├── repositories/        # Ports (Interfaces)
-│   │   │   │   │   └── product.repository.interface.ts
-│   │   │   │   └── value-objects/
-│   │   │   │       ├── price.vo.ts
-│   │   │   │       └── product-id.vo.ts
-│   │   │   │
-│   │   │   ├── application/             # Capa de Aplicación
-│   │   │   │   ├── dto/
-│   │   │   │   │   ├── request/
-│   │   │   │   │   │   └── search-products.dto.ts
-│   │   │   │   │   └── response/
-│   │   │   │   │       ├── product-list.response.dto.ts
-│   │   │   │   │       ├── product-detail.response.dto.ts
-│   │   │   │   │       └── search-result.response.dto.ts
-│   │   │   │   ├── services/
-│   │   │   │   │   ├── search-products.service.ts
-│   │   │   │   │   └── get-product-detail.service.ts
-│   │   │   │   └── mappers/
-│   │   │   │       ├── product.mapper.ts
-│   │   │   │       └── search-result.mapper.ts
-│   │   │   │
-│   │   │   ├── infrastructure/          # Capa de Infraestructura
-│   │   │   │   ├── controllers/
-│   │   │   │   │   └── products.controller.ts
-│   │   │   │   ├── repositories/
-│   │   │   │   │   └── mock-product.repository.ts
-│   │   │   │   └── data/
-│   │   │   │       ├── mock-data.ts
-│   │   │   │       ├── products-mock.json
-│   │   │   │       └── search-results-mock.json
-│   │   │   │
-│   │   │   └── products.module.ts
-│   │   │
-│   │   └── health/                      # Health Check Module
-│   │       ├── health.controller.ts
-│   │       └── health.module.ts
+│   ├── infrastructure/                  # Infrastructure Layer
+│   │   ├── config/                      # Configuration
+│   │   ├── controllers/                 # HTTP Controllers
+│   │   │   └── products.controller.ts
+│   │   ├── repositories/                # Repository Implementations
+│   │   │   └── mock-product.repository.ts
+│   │   └── persistence/                 # Data Persistence (Mock Data)
 │   │
-│   ├── app.module.ts
-│   └── main.ts
+│   └── presentation/                    # Presentation Layer (Modules)
+│       └── modules/
+│           └── products/
+│               └── products.module.ts
 │
 ├── test/
 │   ├── unit/
-│   │   └── products/
-│   │       ├── services/
-│   │       └── mappers/
 │   ├── integration/
-│   │   └── products/
-│   │       └── products.controller.test.ts
-│   ├── e2e/
-│   │   └── products.e2e.test.ts
-│   └── jest-e2e.json
+│   └── e2e/
 │
 ├── .env.example
-├── .env.development
 ├── nest-cli.json
 ├── package.json
 ├── tsconfig.json

@@ -7,7 +7,7 @@ import React, {
   useState,
   useMemo,
 } from 'react';
-import { CartItem, CartState } from '@/core/domain/cart.types';
+import { CartItem, CartState } from '../types/cart.types';
 
 interface CartContextType extends CartState {
   addToCart: (product: Omit<CartItem, 'quantity'>) => void;

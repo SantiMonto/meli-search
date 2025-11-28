@@ -3,7 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { AuthFormData, authSchema } from '@/core/domain/auth.schema';
+import { authSchema, type AuthFormData } from '@/core/types/auth.types';
 import { useAuth } from '@/core/contexts/auth.context';
 import { Button } from '@/components/ui';
 import { Input } from '@/components/ui';

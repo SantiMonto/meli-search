@@ -5,7 +5,7 @@ Aplicación frontend con Next.js 16 para búsqueda y detalle de productos de Mer
 ## 🚀 Tecnologías
 
 - **Next.js** 16 - App Router
-- **React** 18.3.0
+- **React** 19.0.0
 - **TypeScript** 5.3.0
 - **Tailwind CSS** 3.4.0 - Estilos
 - **@meli/shared-types** - Tipos compartidos del monorepo
@@ -84,6 +84,10 @@ npm run start --workspace=apps/frontend
 ## 🔧 Variables de Entorno
 
 Crea un archivo `.env.local` basado en `.env.local.example`:
+
+```bash
+cp .env.local.example .env.local
+```
 
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:3000

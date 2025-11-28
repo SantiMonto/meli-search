@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { Minus, Plus } from 'lucide-react';
-import { CartItem as CartItemType } from '@/core/domain/cart.types';
+import { CartItem as CartItemType } from '@/core/types/cart.types';
 import { useCart } from '@/core/contexts/cart.context';
 
 interface CartItemProps {
