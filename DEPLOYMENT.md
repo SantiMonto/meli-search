@@ -64,7 +64,7 @@ La URL será algo como: `https://meli-search-frontend.vercel.app`
 
 - **Name**: `meli-search-backend`
 - **Region**: Oregon (Free)
-- **Branch**: `develop` (o `main`)
+- **Branch**: `main` ⚠️ **Importante: Usar main, no develop**
 - **Root Directory**: `apps/backend`
 - **Runtime**: Node
 - **Build Command**:
