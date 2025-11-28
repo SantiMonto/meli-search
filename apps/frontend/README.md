@@ -14,31 +14,31 @@ Aplicación frontend con Next.js 16 para búsqueda y detalle de productos de Mer
 
 El proyecto sigue **Arquitectura Hexagonal adaptada para frontend**:
 
-```
-src/
-├── app/                 # Next.js App Router (Presentation)
-│   ├── layout.tsx       # Root layout con Header
-│   ├── page.tsx         # Home/Search page
-│   └── items/[id]/      # Product detail page
-│
-├── components/          # React components
-│   ├── ui/              # Base UI components (Button, Input, Card, Spinner)
-│   ├── features/        # Feature-specific components
-│   └── layout/          # Layout components (Header)
-│
-├── core/                # Domain layer (business logic)
-│   ├── entities/        # Domain entities
-│   ├── use-cases/       # Application use cases
-│   └── repositories/    # Repository interfaces (ports)
-│
-├── infrastructure/      # Infrastructure layer (adapters)
-│   ├── http/            # HTTP client
-│   ├── repositories/    # API implementations
-│   └── config/          # Configuration
-│
-├── hooks/               # Custom React hooks
-└── lib/                 # Utilities (cn, formatCurrency, debounce)
-```
+````
+```mermaid
+graph TD
+    User((Usuario)) -->|Interactúa| UI[UI Components / Pages]
+
+    subgraph Frontend [Frontend Application]
+        direction TB
+        UI -->|Usa| Hooks[Custom Hooks]
+        Hooks -->|Invoca| UseCases[Core Use Cases]
+
+        subgraph Domain [Domain Layer]
+            UseCases -->|Manipula| Entities[Domain Entities]
+            UseCases -->|Define| Ports[Repository Interfaces]
+        end
+
+        subgraph Infrastructure [Infrastructure Layer]
+            Ports -.->|Implementado por| APIAdapter[API Repository Implementation]
+            APIAdapter -->|Usa| HTTP[HTTP Client]
+        end
+    end
+
+    HTTP -->|JSON Request| Backend[Backend API]
+````
+
+````
 
 ## 🎨 Sistema de Diseño
 
@@ -62,7 +62,7 @@ Desde la raíz del monorepo:
 
 ```bash
 npm install
-```
+````
 
 ## 🏃 Ejecución
 

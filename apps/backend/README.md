@@ -14,26 +14,33 @@ API REST mock para búsqueda y detalle de productos, simulando la API de Mercado
 
 El proyecto sigue **Arquitectura Hexagonal (Ports & Adapters)**:
 
-```
-src/
-├── domain/              # Capa de Dominio (lógica de negocio pura)
-│   ├── entities/        # Entidades del dominio
-│   ├── value-objects/   # Value Objects
-│   ├── exceptions/      # Excepciones de dominio
-│   ├── repositories/    # Interfaces (Ports)
-│   └── use-cases/       # Casos de uso
-│
-├── infrastructure/      # Capa de Infraestructura (adaptadores)
-│   ├── persistence/     # Repositorios concretos
-│   │   └── mock/        # Mock data y MockProductRepository
-│   └── config/          # Configuración
-│
-└── presentation/        # Capa de Presentación (HTTP)
-    ├── controllers/     # Controllers REST
-    ├── dto/             # DTOs de request/response
-    ├── filters/         # Exception filters
-    └── interceptors/    # Interceptors
-```
+````
+```mermaid
+graph TD
+    Frontend[Frontend Client] -->|HTTP Request| Controller[Controllers]
+
+    subgraph Backend [Backend Application]
+        direction TB
+
+        subgraph Presentation [Presentation Layer]
+            Controller -->|Valida| DTOs[DTOs]
+        end
+
+        Controller -->|Invoca| Service[Use Cases / Services]
+
+        subgraph Domain [Domain Layer]
+            Service -->|Manipula| Entities[Domain Entities]
+            Service -->|Define| Ports[Repository Interfaces]
+        end
+
+        subgraph Infrastructure [Infrastructure Layer]
+            Ports -.->|Implementado por| RepoImpl[Repository Implementation]
+            RepoImpl -->|Lee| MockData[(Mock Data / JSON)]
+        end
+    end
+````
+
+````
 
 ## 🔧 Variables de Entorno
 
@@ -41,7 +48,7 @@ Copia `.env.example` a `.env` y ajusta según necesites:
 
 ```bash
 cp .env.example .env
-```
+````
 
 ### Variables disponibles:
 
