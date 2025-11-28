@@ -30,7 +30,7 @@
     "test": "npm run test --workspaces --if-present",
     "test:watch": "npm run test:watch --workspaces --if-present",
     "test:cov": "npm run test:cov --workspaces --if-present",
-    "prepare": "node -e \"if (process.env.NODE_ENV !== 'production') { require('child_process').execSync('husky install') }\"",
+    "prepare": "node -e \"if (process.env.CI !== 'true') { require('child_process').execSync('husky install') }\"",
     "clean": "rm -rf node_modules apps/*/node_modules packages/*/node_modules apps/*/.next apps/*/dist"
   },
   "devDependencies": {
