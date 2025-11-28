@@ -205,7 +205,6 @@ Si tuviera más tiempo, implementaría las siguientes mejoras:
 - **Internacionalización (i18n)**: Implementar soporte para múltiples idiomas (Español, Portugués, Inglés).
 - **State Management**: Evaluar Zustand o Redux si la complejidad del estado global aumentara significativamente (actualmente Context + React Query es suficiente).
 - **Filtros**: Permitir que el usuario pueda ver los productos conforme a sus requerimientos prioritarios (precio, marca, A-Z, entre otros).
-- **Despliegue**: Desplegar ambos proyectos en plataformas gratuitas (Vercel, Netlify, Railway, Render, entre otros).
 - **Carrusel de Promociones**: Mejorar la página de presentación añadiendo carrusel con promociones como las de Black Friday.
 - **Navegación Completa**: Añadir los componentes para cada uno de los links que hasta el momento llevan a la página de NOT FOUND.
 - **Perfil de Usuario**: Añadir el componente para el perfil del usuario.
