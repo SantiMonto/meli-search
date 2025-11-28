@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: meli-search-backend
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:prod
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: API_PREFIX
+        value: api/v1
+      - key: CORS_ORIGIN
+        sync: false
+      - key: SWAGGER_ENABLED
+        value: true
+      - key: SWAGGER_PATH
+        value: api
+      - key: MOCK_DELAY_MIN
+        value: 200
+      - key: MOCK_DELAY_MAX
+        value: 800
