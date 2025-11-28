@@ -157,6 +157,63 @@ Tanto el frontend como el backend siguen arquitectura hexagonal:
 └─────────────────────────────────────┘
 ```
 
+## 💡 Decisiones Técnicas Destacadas
+
+### 1. Arquitectura de Monorepo
+
+Se optó por un **monorepo** gestionado con `npm workspaces` para facilitar la gestión de dependencias y compartir código (como tipos TypeScript) entre el frontend y el backend sin necesidad de publicar paquetes privados.
+
+### 2. Arquitectura Hexagonal (Ports & Adapters)
+
+Tanto en frontend como en backend se implementó una **Arquitectura Hexagonal**.
+
+- **Frontend**: Permite desacoplar la lógica de negocio (Use Cases, Entities) de la UI (React Components) y de la infraestructura (API Calls). Esto facilita el testing unitario de la lógica core sin depender de React.
+- **Backend**: Separa el dominio de la capa HTTP (Controllers) y de la persistencia (Repositories), permitiendo cambiar la base de datos o el framework web con mínimo impacto en el negocio.
+
+### 3. Definición de Arquitectura Backend: Monolito Modular
+
+Para este desafío, la arquitectura del backend se define como un **Monolito Modular**.
+
+Al ser una API que simula un servicio de búsqueda con un alcance acotado, un monolito permite tener todo el dominio unificado, facilitando el desarrollo, el testing y el despliegue en una sola unidad.
+
+**Modularidad (NestJS)**: Aunque es un monolito, el uso de Módulos de NestJS permite una separación lógica clara (Modules, Controllers, Services), lo que evita el "spaghetti code" y facilita el escalamiento y la mantenibilidad.
+
+### 4. Next.js App Router
+
+Se utilizó **Next.js 14+ con App Router** para aprovechar las ventajas de los **React Server Components (RSC)**.
+
+- Mejora el rendimiento inicial (menor JS enviado al cliente).
+- Simplifica el data fetching en el servidor.
+- Optimización automática de imágenes y fuentes.
+
+### 5. NestJS & Swagger
+
+Para el backend se eligió **NestJS** por su robustez, inyección de dependencias y estructura modular. Se integró **Swagger** para tener una documentación viva de la API, facilitando la integración con el frontend.
+
+### 6. Testing Strategy
+
+- **Unit Testing**: Jest para lógica de negocio y componentes aislados.
+- **E2E Testing**: Playwright para probar flujos completos de usuario en el frontend.
+
+---
+
+## 🚀 Mejoras Futuras
+
+Si tuviera más tiempo, implementaría las siguientes mejoras:
+
+- **Base de Datos Real**: Reemplazar el mock repository con una base de datos real (PostgreSQL o MongoDB) usando un ORM como Prisma o TypeORM e implementarla con docker para pruebas en local.
+- **Accesibilidad (A11y)**: Realizar una auditoría completa con herramientas como axe-core y mejorar la navegación por teclado y soporte para lectores de pantalla.
+- **Internacionalización (i18n)**: Implementar soporte para múltiples idiomas (Español, Portugués, Inglés).
+- **State Management**: Evaluar Zustand o Redux si la complejidad del estado global aumentara significativamente (actualmente Context + React Query es suficiente).
+- **Filtros**: Permitir que el usuario pueda ver los productos conforme a sus requerimientos prioritarios (precio, marca, A-Z, entre otros).
+- **Despliegue**: Desplegar ambos proyectos en plataformas gratuitas (Vercel, Netlify, Railway, Render, entre otros).
+- **Carrusel de Promociones**: Mejorar la página de presentación añadiendo carrusel con promociones como las de Black Friday.
+- **Navegación Completa**: Añadir los componentes para cada uno de los links que hasta el momento llevan a la página de NOT FOUND.
+- **Perfil de Usuario**: Añadir el componente para el perfil del usuario.
+- **OAuth**: Hacer login mediante Google, Facebook, entre otros.
+
+---
+
 ## 📚 Documentación
 
 - [PRPs](/PRPs) - Product Requirement Prompts detallados
