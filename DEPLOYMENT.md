@@ -69,7 +69,7 @@ La URL será algo como: `https://meli-search-frontend.vercel.app`
 - **Runtime**: Node
 - **Build Command**:
   ```bash
-  npm install && npm run build --workspace=apps/backend
+  npm install --legacy-peer-deps && npm run build --workspace=apps/backend
   ```
 - **Start Command**:
   ```bash
