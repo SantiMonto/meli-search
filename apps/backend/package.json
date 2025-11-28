@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "ts-node -r tsconfig-paths/register src/main.ts",
-    "build": "npx nest build",
+    "build": "node ../../node_modules/@nestjs/cli/bin/nest.js build",
     "start": "node dist/apps/backend/src/main",
     "start:dev": "ts-node -r tsconfig-paths/register src/main.ts",
     "start:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register src/main.ts",
