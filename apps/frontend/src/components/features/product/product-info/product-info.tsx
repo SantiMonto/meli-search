@@ -8,7 +8,7 @@ import { useCart } from '@/core/contexts/cart.context';
 import { useRouter, usePathname } from 'next/navigation';
 import { Toast } from '@/components/ui';
 import { useState, useCallback } from 'react';
-import { useProductAutoCart } from '@/hooks/useProductAutoCart';
+import { useProductAutoCart } from '@/hooks/use-product-auto-cart';
 
 interface ProductInfoProps {
   product: Product;

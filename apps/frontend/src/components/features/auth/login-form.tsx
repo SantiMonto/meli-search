@@ -36,7 +36,7 @@ export const LoginForm = () => {
         Ingresa tu e-mail o teléfono para iniciar sesión
       </h1>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="md:space-y-4">
         <div className="space-y-1">
           <label
             htmlFor="identifier"
@@ -55,7 +55,7 @@ export const LoginForm = () => {
           )}
         </div>
 
-        <div className="flex justify-between w-full gap-4">
+        <div className="md:flex md:justify-between w-full md:gap-4">
           <div className="space-y-1">
             <label
               htmlFor="firstName"
@@ -66,7 +66,7 @@ export const LoginForm = () => {
             <Input
               id="firstName"
               type="text"
-              className={`h-12 rounded-md border ${errors.firstName ? 'border-red-500 focus-visible:ring-red-500' : ''}`}
+              className={`h-12 w-full rounded-md border ${errors.firstName ? 'border-red-500 focus-visible:ring-red-500' : ''}`}
               {...register('firstName')}
             />
             {errors.firstName && (
@@ -83,7 +83,7 @@ export const LoginForm = () => {
             <Input
               id="lastName"
               type="text"
-              className={`h-12 rounded-md border ${errors.lastName ? 'border-red-500 focus-visible:ring-red-500' : ''}`}
+              className={`h-12 w-full rounded-md border ${errors.lastName ? 'border-red-500 focus-visible:ring-red-500' : ''}`}
               {...register('lastName')}
             />
             {errors.lastName && (

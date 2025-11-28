@@ -57,9 +57,6 @@ export function MobileMenu() {
             <div className="h-px bg-gray-200" />
 
             <div className="flex flex-col gap-4">
-              <Link href="/register" onClick={() => setIsOpen(false)}>
-                Crea tu cuenta
-              </Link>
               <Link href="/login" onClick={() => setIsOpen(false)}>
                 Ingresa
               </Link>
