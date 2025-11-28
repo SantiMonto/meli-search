@@ -202,7 +202,6 @@ Para el backend se eligió **NestJS** por su robustez, inyección de dependencia
 Si tuviera más tiempo, implementaría las siguientes mejoras:
 
 - **Base de Datos Real**: Reemplazar el mock repository con una base de datos real (PostgreSQL o MongoDB) usando un ORM como Prisma o TypeORM e implementarla con docker para pruebas en local.
-- **Accesibilidad (A11y)**: Realizar una auditoría completa con herramientas como axe-core y mejorar la navegación por teclado y soporte para lectores de pantalla.
 - **Internacionalización (i18n)**: Implementar soporte para múltiples idiomas (Español, Portugués, Inglés).
 - **State Management**: Evaluar Zustand o Redux si la complejidad del estado global aumentara significativamente (actualmente Context + React Query es suficiente).
 - **Filtros**: Permitir que el usuario pueda ver los productos conforme a sus requerimientos prioritarios (precio, marca, A-Z, entre otros).
