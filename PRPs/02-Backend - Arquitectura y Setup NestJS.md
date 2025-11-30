@@ -12,18 +12,18 @@ El backend actuará como un servicio mock que simula la API de Mercado Libre. De
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     INFRASTRUCTURE LAYER                     │
+│                     INFRASTRUCTURE LAYER                    │
 │  apps/backend/src/infrastructure/                           │
-│  ├── controllers/      (HTTP/REST)                         │
-│  ├── repositories/     (Mock Implementations)              │
-│  └── config/           (Configuration)                     │
+│  ├── controllers/      (HTTP/REST)                          │
+│  ├── repositories/     (Mock Implementations)               │
+│  └── config/           (Configuration)                      │
 └───────────┼──────────────────┼───────────────────┼──────────┘
             │                  │                   │
             │                  ▼                   │
 ┌───────────┼──────────────────────────────────────┼──────────┐
 │           │          APPLICATION LAYER           │          │
-│           │   apps/backend/src/domain/use-cases/         │
-│           └──▶│      Use Cases/Services  │◀─────┘          │
+│           │   apps/backend/src/domain/use-cases/ │          │
+│           └──▶│      Use Cases/Services  │◀─────┘           │
 │               │  - SearchProductsUseCase │                  │
 │               │  - GetProductDetailUseCase│                 │
 │               └────────────┬─────────────┘                  │
@@ -31,11 +31,11 @@ El backend actuará como un servicio mock que simula la API de Mercado Libre. De
                              │
                              ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                        DOMAIN LAYER                          │
-│  apps/backend/src/domain/                                    │
-│  ├── entities/         (Core Models)                       │
-│  ├── repositories/     (Ports/Interfaces)                  │
-│  └── value-objects/    (Domain Values)                     │
+│                        DOMAIN LAYER                         │
+│  apps/backend/src/domain/                                   │
+│  ├── entities/         (Core Models)                        │
+│  ├── repositories/     (Ports/Interfaces)                   │
+│  └── value-objects/    (Domain Values)                      │
 └─────────────────────────────────────────────────────────────┘
 ```
 
